@@ -19,6 +19,9 @@ conda activate neuralsearch
 pip install torch==1.6.0 torchvision==0.7.0
 ```
 ## Data
-
-
+CIFAR-10 can be automatically downloaded by torchvision when searching the architecture
 ## Architecture search
+```
+cd cnn
+python train_search.py --unrolled
+```
