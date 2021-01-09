@@ -52,4 +52,14 @@ def create_exp_dir(path, scripts_to_save=None):
 ```
 4. Do step 2 again
 ## Train architecture
-
+1. Modify```train.py```  
+Save the path and remove the timestamp
+```
+args.save = 'search-{}'.format(args.save)
+```
+Remove the index behind ```data``` (torch version < 1.0.0 is not applicable)
+```
+ objs.update(loss.data, n)
+ top1.update(prec1.data, n)
+ top5.update(prec5.data, n)
+```
