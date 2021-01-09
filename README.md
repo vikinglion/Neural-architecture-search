@@ -51,13 +51,13 @@ def create_exp_dir(path, scripts_to_save=None):
       shutil.copyfile(script, dst_file)
 ```
 4. **Do step 2 again**
-## Train architecture
-1. Copy the searched network model from ```search-EXP\log.txt```:
+## Architecture evaluation
+1. **Copy the searched network model from ```search-EXP\log.txt```:**  
 Example
 ```
 genotype = Genotype(normal=[('sep_conv_3x3', 0), ('sep_conv_3x3', 1), ('sep_conv_3x3', 0), ('sep_conv_3x3', 1), ('sep_conv_3x3', 1), ('sep_conv_3x3', 0), ('sep_conv_3x3', 0), ('sep_conv_3x3', 1)], normal_concat=range(2, 6), reduce=[('max_pool_3x3', 0), ('max_pool_3x3', 1), ('max_pool_3x3', 0), ('skip_connect', 2), ('dil_conv_5x5', 3), ('skip_connect', 2), ('skip_connect', 2), ('dil_conv_5x5', 4)], reduce_concat=range(2, 6))
 ```
-2. Paste the model to '''genotypes.py'''
+2.**Paste the model to '''genotypes.py'''**
 ```
 DARTS_V3 = Genotype(!!! model !!!)
 DARTS = DARTS_V3
@@ -73,4 +73,12 @@ Remove the index behind ```data``` (torch version < 1.0.0 is not applicable)
  top1.update(prec1.data, n)
  top5.update(prec5.data, n)
 ```
-4. 
+4. **To evaluate our best cells by training from scratch, run**
+```
+cd cnn && python train.py --auxiliary --cutout
+```
+## Visualization
+**Package graphviz is required to visualize the learned cells**
+```
+python visualize.py DARTS
+```
